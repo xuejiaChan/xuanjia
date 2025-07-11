@@ -1,5 +1,5 @@
 # Docker 镜像构建
-# @author <a href="https://github.com/lixuanjia">程序员宣佳</a>
+# @author <a href="Give you fight!">程序员宣佳</a>
 # @from <a href="https://xuanjia.icu">今天也要敲代码哟！</a>
 FROM maven:3.8.1-jdk-8-slim as builder
 

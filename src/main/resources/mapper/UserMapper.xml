@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- @author <a href="https://github.com/lixuanjia">程序员宣佳</a> -->
+<!-- @author <a href="Give you fight!">程序员宣佳</a> -->
 <!-- @from <a href="https://xuanjia.icu">今天也要敲代码哟！</a> -->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xuanjia.springbootinit.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.xuanjia.springbootinit.model.entity.User">
+<mapper namespace="com.xuanjia.smartInterview.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.xuanjia.smartInterview.model.entity.User">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="unionId" column="unionId" jdbcType="VARCHAR"/>
         <result property="mpOpenId" column="mpOpenId" jdbcType="VARCHAR"/>

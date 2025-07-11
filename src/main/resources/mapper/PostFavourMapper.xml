@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- @author <a href="https://github.com/lixuanjia">程序员宣佳</a> -->
+<!-- @author <a href="Give you fight!">程序员宣佳</a> -->
 <!-- @from <a href="https://xuanjia.icu">今天也要敲代码哟！</a> -->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xuanjia.springbootinit.mapper.PostFavourMapper">
+<mapper namespace="com.xuanjia.smartInterview.mapper.PostFavourMapper">
 
-    <resultMap id="BaseResultMap" type="com.xuanjia.springbootinit.model.entity.PostFavour">
+    <resultMap id="BaseResultMap" type="com.xuanjia.smartInterview.model.entity.PostFavour">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="postId" column="postId" jdbcType="BIGINT"/>
         <result property="userId" column="userId" jdbcType="BIGINT"/>
@@ -20,7 +20,7 @@
     </sql>
 
     <select id="listFavourPostByPage"
-            resultType="com.xuanjia.springbootinit.model.entity.Post">
+            resultType="com.xuanjia.smartInterview.model.entity.Post">
         select p.*
         from post p
                  join (select postId from post_favour where userId = #{favourUserId}) pf

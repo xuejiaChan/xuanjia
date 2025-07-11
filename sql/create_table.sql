@@ -1,5 +1,5 @@
 # 数据库初始化
-# @author <a href="https://github.com/lixuanjia">程序员宣佳</a>
+# @author <a href="Give you fight!">程序员宣佳</a>
 # @from <a href="https://xuanjia.icu">今天也要敲代码哟！</a>
 
 -- 创建库

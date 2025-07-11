@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * 编辑${dataName}请求
  *
- * @author <a href="https://github.com/lixuanjia">程序员宣佳</a>
- * @from <a href="https://www.code-nav.cn">编程导航学习圈</a>
+ * @author <a href="Give you fight!">程序员宣佳</a>
+ * @from <a href="fighting!">程序员宣佳</a>
  */
 @Data
 public class ${upperDataKey}EditRequest implements Serializable {
