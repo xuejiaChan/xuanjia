@@ -1,0 +1,21 @@
+package com.xuanjia.springbootinit.model.dto.postthumb;
+
+import java.io.Serializable;
+import lombok.Data;
+
+/**
+ * 帖子点赞请求
+ *
+ * @author <a href="https://github.com/lixuanjia">程序员宣佳</a>
+ * @from <a href="https://xuanjia.icu">今天也要敲代码哟！</a>
+ */
+@Data
+public class PostThumbAddRequest implements Serializable {
+
+    /**
+     * 帖子 id
+     */
+    private Long postId;
+
+    private static final long serialVersionUID = 1L;
+}
