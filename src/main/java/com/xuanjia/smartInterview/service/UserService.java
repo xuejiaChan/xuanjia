@@ -6,6 +6,7 @@ import com.xuanjia.smartInterview.model.dto.user.UserQueryRequest;
 import com.xuanjia.smartInterview.model.entity.User;
 import com.xuanjia.smartInterview.model.vo.LoginUserVO;
 import com.xuanjia.smartInterview.model.vo.UserVO;
+
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
@@ -118,4 +119,18 @@ public interface UserService extends IService<User> {
      */
     QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 
-}
+    /**
+     * 根据 Redis 签到
+     * @param userID
+     * @return
+     */
+     boolean getSignInRedisKey(Long userID);
+
+    /**
+     * 获取每天的签到记录
+     *
+     * @param userId
+     * @return
+     */
+    public List<Integer> getUserSignInday(Long userId, Integer year);
+    }

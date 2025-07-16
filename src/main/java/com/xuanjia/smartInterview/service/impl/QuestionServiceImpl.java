@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xuanjia.smartInterview.common.ErrorCode;
 import com.xuanjia.smartInterview.constant.CommonConstant;
+import com.xuanjia.smartInterview.esdao.QuestionEsDao;
 import com.xuanjia.smartInterview.exception.ThrowUtils;
 import com.xuanjia.smartInterview.mapper.QuestionMapper;
 import com.xuanjia.smartInterview.model.dto.question.QuestionQueryRequest;
@@ -25,6 +26,9 @@ import com.xuanjia.smartInterview.utils.SqlUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +56,8 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
     private QuestionBankService questionBankService;
     @Autowired
     private QuestionBankQuestionService questionBankQuestionService;
+    @Autowired
+    private QuestionEsDao questionEsDao;
 
     /**
      * 校验数据
@@ -223,6 +229,20 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         }
         Page<Question> questionPage = this.page(new Page<>(current, pageSize), queryWrapper);
         return questionPage;
+    }
+
+    @Override
+    public Page<Question> searchFromEs(QuestionQueryRequest questionQueryRequest) {
+        Long quesitonId = questionQueryRequest.getId();
+        String content = questionQueryRequest.getContent();
+
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+
+        //构造过滤条件
+        boolQueryBuilder.filter(QueryBuilders.termQuery("isDelete", 0));
+
+
+        return null;
     }
 
 }

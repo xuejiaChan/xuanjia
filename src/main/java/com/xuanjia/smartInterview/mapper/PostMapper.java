@@ -2,6 +2,8 @@ package com.xuanjia.smartInterview.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xuanjia.smartInterview.model.entity.Post;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  * @author <a href="Give you fight!">程序员宣佳</a>
  * @from <a href="https://xuanjia.icu">今天也要敲代码哟！</a>
  */
+@Mapper
 public interface PostMapper extends BaseMapper<Post> {
 
     /**

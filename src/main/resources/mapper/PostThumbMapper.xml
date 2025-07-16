@@ -18,4 +18,5 @@
         id,postId,
         userId,createTime,updateTime
     </sql>
+
 </mapper>

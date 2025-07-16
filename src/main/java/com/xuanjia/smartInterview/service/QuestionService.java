@@ -57,5 +57,7 @@ public interface QuestionService extends IService<Question> {
      * @param questionQueryRequest
      * @return
      */
-    public Page<Question> listQuestionByPage(QuestionQueryRequest questionQueryRequest);
+    Page<Question> listQuestionByPage(QuestionQueryRequest questionQueryRequest);
+
+    Page<Question> searchFromEs(QuestionQueryRequest questionQueryRequest);
 }

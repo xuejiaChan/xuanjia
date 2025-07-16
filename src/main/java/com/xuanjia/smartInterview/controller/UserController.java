@@ -21,7 +21,9 @@ import com.xuanjia.smartInterview.model.vo.LoginUserVO;
 import com.xuanjia.smartInterview.model.vo.UserVO;
 import com.xuanjia.smartInterview.service.UserService;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -316,5 +318,32 @@ public class UserController {
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
+    }
+
+    /**
+     * 新增签到表
+     * @param request
+     * @return
+     */
+    @PostMapping("/add/sign_in")
+    public BaseResponse<Boolean> signInRedissonKey(HttpServletRequest request){
+        User loginUser = userService.getLoginUser(request);
+        Long id = loginUser.getId();
+        boolean signInRedisKey = userService.getSignInRedisKey(id);
+        return ResultUtils.success(signInRedisKey);
+    }
+
+    /**
+     * 获取每天的签到记录
+     * @param year
+     * @param request
+     * @return
+     */
+    @GetMapping("/get/sign_in")
+    public BaseResponse<List<Integer>> getUserLoginRedisson(Integer year,HttpServletRequest request){
+        User loginUser = userService.getLoginUser(request);
+        Long id = loginUser.getId();
+        List<Integer> userSignInday = userService.getUserSignInday(id, year);
+        return ResultUtils.success(userSignInday);
     }
 }
