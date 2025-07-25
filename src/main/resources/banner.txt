@@ -1,1 +1,10 @@
 by 程序员宣佳：Give you fight!
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        while(head != null){
+
+        }
+    }
+}

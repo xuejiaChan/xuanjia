@@ -14,6 +14,7 @@ import com.xuanjia.smartInterview.exception.ThrowUtils;
 import com.xuanjia.smartInterview.mapper.QuestionMapper;
 import com.xuanjia.smartInterview.model.dto.question.QuestionQueryRequest;
 import com.xuanjia.smartInterview.model.entity.Question;
+import com.xuanjia.smartInterview.model.entity.QuestionBank;
 import com.xuanjia.smartInterview.model.entity.QuestionBankQuestion;
 import com.xuanjia.smartInterview.model.entity.User;
 import com.xuanjia.smartInterview.model.vo.QuestionVO;
@@ -241,8 +242,11 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         //构造过滤条件
         boolQueryBuilder.filter(QueryBuilders.termQuery("isDelete", 0));
 
-
         return null;
     }
+
+
+
+
 
 }

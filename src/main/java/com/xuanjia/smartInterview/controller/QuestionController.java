@@ -13,17 +13,22 @@ import com.xuanjia.smartInterview.model.dto.question.QuestionAddRequest;
 import com.xuanjia.smartInterview.model.dto.question.QuestionEditRequest;
 import com.xuanjia.smartInterview.model.dto.question.QuestionQueryRequest;
 import com.xuanjia.smartInterview.model.dto.question.QuestionUpdateRequest;
+import com.xuanjia.smartInterview.model.dto.questionBankQuestion.QuestionBankQuestionBatchAddRequest;
 import com.xuanjia.smartInterview.model.entity.Question;
+import com.xuanjia.smartInterview.model.entity.QuestionBankQuestion;
 import com.xuanjia.smartInterview.model.entity.User;
 import com.xuanjia.smartInterview.model.vo.QuestionVO;
+import com.xuanjia.smartInterview.service.QuestionBankQuestionService;
 import com.xuanjia.smartInterview.service.QuestionService;
 import com.xuanjia.smartInterview.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 题库接口
@@ -41,6 +46,8 @@ public class QuestionController {
 
     @Resource
     private UserService userService;
+    @Autowired
+    private QuestionBankQuestionService questionBankQuestionService;
 
     // region 增删改查
 
@@ -234,6 +241,19 @@ public class QuestionController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
     }
+
+
+    @PostMapping("add/batch")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> addBatchQuestionTOBank(@RequestBody QuestionBankQuestionBatchAddRequest questionBankQuestionBatchAddRequest,
+                                                        HttpServletRequest request){
+        Long questionBankId = questionBankQuestionBatchAddRequest.getQuestionBankId();
+        List<Long> questionId = questionBankQuestionBatchAddRequest.getQuestionId();
+        User loginUser = userService.getLoginUser(request);
+        questionBankQuestionService.batchAddQuestionTOBank(questionId,questionBankId,loginUser);
+        return ResultUtils.success(true);
+    }
+
 
 
 

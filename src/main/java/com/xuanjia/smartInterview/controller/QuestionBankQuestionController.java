@@ -2,6 +2,7 @@ package com.xuanjia.smartInterview.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xuanjia.smartInterview.annotation.AuthCheck;
 import com.xuanjia.smartInterview.common.BaseResponse;
 import com.xuanjia.smartInterview.common.DeleteRequest;
@@ -10,10 +11,7 @@ import com.xuanjia.smartInterview.common.ResultUtils;
 import com.xuanjia.smartInterview.constant.UserConstant;
 import com.xuanjia.smartInterview.exception.BusinessException;
 import com.xuanjia.smartInterview.exception.ThrowUtils;
-import com.xuanjia.smartInterview.model.dto.questionBankQuestion.QuestionBankQuestionAddRequest;
-import com.xuanjia.smartInterview.model.dto.questionBankQuestion.QuestionBankQuestionQueryRequest;
-import com.xuanjia.smartInterview.model.dto.questionBankQuestion.QuestionBankQuestionRemoveRequest;
-import com.xuanjia.smartInterview.model.dto.questionBankQuestion.QuestionBankQuestionUpdateRequest;
+import com.xuanjia.smartInterview.model.dto.questionBankQuestion.*;
 import com.xuanjia.smartInterview.model.entity.QuestionBankQuestion;
 import com.xuanjia.smartInterview.model.entity.User;
 import com.xuanjia.smartInterview.model.vo.QuestionBankQuestionVO;
@@ -27,6 +25,7 @@ import org.springframework.web.servlet.View;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 题库题目关联接口
@@ -222,5 +221,15 @@ public class QuestionBankQuestionController {
         return ResultUtils.success(remove);
     }
 
+    @PostMapping("/remove/batch")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> batchDeleteQuestionTOBank(@RequestBody QuestionBankQuestionReomveRequest questionBankQuestionReomveRequest,
+                                                           HttpServletRequest request){
+        ThrowUtils.throwIf(questionBankQuestionReomveRequest == null, ErrorCode.OPERATION_ERROR, "传入的数据为空！");
+        Long questionBankId = questionBankQuestionReomveRequest.getQuestionBankId();
+        List<Long> questionId = questionBankQuestionReomveRequest.getQuestionId();
+        questionBankQuestionService.batchDeleteQuestionTOBank(questionId, questionBankId);
+        return ResultUtils.success(true);
+    }
     // endregion
 }
